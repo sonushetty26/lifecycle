@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import  ReactDOM from 'react-dom'
+import Counter from './component/counter';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+class App extends Component{
+  constructor(props) {
+    super(props)
+  }
+
+  mount(){
+        ReactDOM.render(<React.StrictMode>
+          <Counter/>
+          </React.StrictMode>, document.getElementById('renderHere'))
+  }
+
+  unMount(){
+      ReactDOM.unmountComponentAtNode(document.getElementById("renderHere"))
+  }
+ 
+   render(){
+  return(
+    <div className="container">
+      <div className="row">
+        <div className='col-md-12 text-center'>
+          <h3 className="display-1 text-success"> React Lifecycle</h3>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-md-12">
+          <button onClick={() => this.mount()} className="btn btn-outline-success">Mount</button>
+
+          <button onClick={() => this.unMount()} className="btn btn-outline-danger float-end">UnMount</button>
+        </div>
+        </div>
+        
+        <section id="renderHere"></section>
     </div>
-  );
+    )
+  }
 }
-
-export default App;
+export default App
